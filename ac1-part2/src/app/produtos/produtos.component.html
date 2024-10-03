@@ -1,0 +1,15 @@
+<div *ngIf="produtos.length > 0; else semProdutos">
+  <div *ngFor="let produto of produtos" class="produto">
+    <h2>{{ produto.nome }}</h2>
+    <img [src]="produto.imagem" alt="{{ produto.nome }}" class="produto-imagem">
+    <p>Preço: R$ {{ produto.preco.toFixed(2) }}</p>
+    <p>{{ produto.descricao }}</p>
+    <button [ngClass]="{'btn-out-stock': !produto.emEstoque}" [disabled]="!produto.emEstoque">
+      Comprar
+    </button>
+  </div>
+</div>
+
+<ng-template #semProdutos>
+  <p>Nenhum produto disponível no momento.</p>
+</ng-template>
